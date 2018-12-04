@@ -42,13 +42,8 @@ foreach ($slob as $binding) {
     }
     $metaArray20['SingleLogoutService'][] = [
         'Binding'  => $binding,
-<<<<<<< HEAD
-        'Location' => $slol,
-    ];
-=======
         'Location' => $spconfig->getString('SingleLogoutServiceLocation', $slol),
-    );
->>>>>>> 7a7426e2... Adds custom SP metadata handling from config files.
+    ];
 }
 
 $assertionsconsumerservicesdefault = [
