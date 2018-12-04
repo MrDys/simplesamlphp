@@ -40,7 +40,7 @@ foreach ($slob as $binding) {
     }
     $metaArray20['SingleLogoutService'][] = array(
         'Binding'  => $binding,
-        'Location' => $slol,
+        'Location' => $spconfig->getString('SingleLogoutServiceLocation', $slol),
     );
 }
 
@@ -105,7 +105,7 @@ foreach ($assertionsconsumerservices as $services) {
     $index++;
 }
 
-$metaArray20['AssertionConsumerService'] = $eps;
+$metaArray20['AssertionConsumerService'] = $spconfig->getArray('AssertionConsumerService', $eps);
 
 $keys = array();
 $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($spconfig, false, 'new_');
