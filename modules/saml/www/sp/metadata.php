@@ -42,8 +42,13 @@ foreach ($slob as $binding) {
     }
     $metaArray20['SingleLogoutService'][] = [
         'Binding'  => $binding,
+<<<<<<< HEAD
         'Location' => $slol,
     ];
+=======
+        'Location' => $spconfig->getString('SingleLogoutServiceLocation', $slol),
+    );
+>>>>>>> 7a7426e2... Adds custom SP metadata handling from config files.
 }
 
 $assertionsconsumerservicesdefault = [
@@ -106,7 +111,7 @@ foreach ($assertionsconsumerservices as $services) {
     $index++;
 }
 
-$metaArray20['AssertionConsumerService'] = $eps;
+$metaArray20['AssertionConsumerService'] = $spconfig->getArray('AssertionConsumerService', $eps);
 
 $keys = [];
 $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($spconfig, false, 'new_');
