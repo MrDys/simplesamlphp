@@ -6,6 +6,57 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.17.6
+
+Released 2019-08-29
+
+  * Fixed a regression with logout database initialization when using MySQL (#1177).
+  * Fixed an issue with logout when using iframes (#1191).
+  * Fixed an issue causing log entries to be logged with incorrect relative order (#1107).
+
+## Version 1.17.5
+
+Released 2019-08-02
+
+  * Fixed a bug in the SP API where NameID objects weren't taken care of (introduced in 1.17.0).
+  * Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165).
+  * Fixed an issue with table indexes (#1089).
+  * Fixed an issue with table migrations on SQlite (#1169).
+  * Fixed an issue with generated eduPersonTargetedID lacking a format specified (#1135).
+  * Updated composer dependencies.
+
+## Version 1.17.4
+
+Released 2019-07-11
+
+  * Fix an issue introduced in 1.17.3 with `enable.http_post`.
+
+## Version 1.17.3
+
+Released 2019-07-10
+
+  * Resolved a security issue that could lead to a reflected XSS.  See
+    [SSPSA 201907-01](https://simplesamlphp.org/security/201907-01).
+  * Add new options `session.cookie.samesite` and `language.cookie.samesite` that can be
+    used to set a specific value for the cookies' SameSite attribute. The default it not
+    to set it.
+  * Upgraded jQuery to version 3.4.
+  * HHVM is no longer supported.
+  * Fixed a bug (#926) where dynamic metadata records where not loaded from a database.
+  * Fixed an issue when an error occurs during a passive authentication request.
+  * Handle duplicate insertions for SQL Server.
+  * Fix a bug in Short SSO Interval warning filter.
+  * Apply a workaround for SIGSEGVs during session creation with PHP-FPM 7.3.
+
+### adfs
+  * Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
+
+### authlinkedin
+  * This module has been removed now that LinkedIn no longer supports OAuth1.
+    If you relied on this module, you may consider migrating to the
+    [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2).
+    A migration guide for LinkedIn authentication is included in their README.
+
 ## Version 1.17.2
 
 Released 2019-04-02
@@ -94,6 +145,8 @@ Released 2019-03-07
   * Allow disabling the Scoping element in SP and remote IdP configuration with
     the `disable_scoping` option, for compatibility with ADFS which does not
     accept the element (#985).
+  * Receiving an eduPersonTargetedID in string form will no longer break
+    parsing of the assertion.
 
 ### sanitycheck
   * Translated into several languages.
@@ -394,8 +447,6 @@ Released 2017-11-20
   * We now send the eduPersonTargetedID attribute in the correct
     NameID XML form, instead of the incorrect simple string. We will also
     refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
-  * Receiving an eduPersonTargetedID in string form will no longer break
-    parsing of the assertion.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.
